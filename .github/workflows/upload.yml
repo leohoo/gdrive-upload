@@ -26,6 +26,6 @@ jobs:
 
       - name: Upload file
         run: |
-          echo ${{ secrets.SERVICE_ACCOUNT_JSON }} > service-account.json
+          echo ${{ secrets.SERVICE_ACCOUNT_JSON }} | base64 --decode > service-account.json
           echo "test content" > ${{ github.event.inputs.filename }}
           python upload.py ${{ github.event.inputs.filename }} ${{ secrets.FOLDER_ID }}
